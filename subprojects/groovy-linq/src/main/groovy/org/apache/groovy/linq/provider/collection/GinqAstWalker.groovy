@@ -35,6 +35,7 @@ import org.apache.groovy.linq.dsl.expression.SimpleGinqExpression
 import org.apache.groovy.linq.dsl.expression.WhereExpression
 import org.codehaus.groovy.ast.ClassHelper
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
+import org.codehaus.groovy.ast.expr.ClassExpression
 import org.codehaus.groovy.ast.expr.Expression
 import org.codehaus.groovy.ast.expr.ExpressionTransformer
 import org.codehaus.groovy.ast.expr.ListExpression
@@ -57,7 +58,7 @@ import static org.codehaus.groovy.ast.tools.GeneralUtils.stmt
  */
 @CompileStatic
 class GinqAstWalker implements GinqVisitor<Object>, SyntaxErrorReportable {
-
+    private static final String QUERYABLE_COLLECTION_CLASS_NAME = QueryableCollection.class.name
     private final SourceUnit sourceUnit
 
     GinqAstWalker(SourceUnit sourceUnit) {
@@ -148,7 +149,7 @@ class GinqAstWalker implements GinqVisitor<Object>, SyntaxErrorReportable {
     @CompileDynamic
     private MethodCallExpression constructFromMethodCallExpression(FromExpression fromExpression) {
         macro {
-            org.apache.groovy.linq.provider.collection.QueryableCollection.from($v { fromExpression.dataSourceExpr })
+            $v{ makeQueryableCollectionClassExpression() }.from($v { fromExpression.dataSourceExpr })
         }
     }
 
@@ -158,7 +159,7 @@ class GinqAstWalker implements GinqVisitor<Object>, SyntaxErrorReportable {
             OnExpression onExpression, WhereExpression whereExpression) {
 
         MethodCallExpression innerJoinMethodCallExpression = macro {
-            $v{receiver}.innerJoin(org.apache.groovy.linq.provider.collection.QueryableCollection.from($v { innerJoinExpression.dataSourceExpr }))
+            $v{receiver}.innerJoin($v{ makeQueryableCollectionClassExpression() }.from($v { innerJoinExpression.dataSourceExpr }))
         }
 
         ((ArgumentListExpression) innerJoinMethodCallExpression.getArguments()).getExpressions().add(
@@ -276,6 +277,10 @@ class GinqAstWalker implements GinqVisitor<Object>, SyntaxErrorReportable {
 
     private static Expression constructAliasVariableAccess(String name) {
         propX(new VariableExpression(__T), name)
+    }
+
+    private static makeQueryableCollectionClassExpression() {
+        new ClassExpression(ClassHelper.make(QUERYABLE_COLLECTION_CLASS_NAME))
     }
 
     @Override
