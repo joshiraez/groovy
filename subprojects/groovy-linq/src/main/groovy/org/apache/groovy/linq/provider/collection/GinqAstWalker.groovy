@@ -16,10 +16,13 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package org.apache.groovy.linq.dsl
+package org.apache.groovy.linq.provider.collection
 
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
+import org.apache.groovy.linq.dsl.GinqSyntaxError
+import org.apache.groovy.linq.dsl.GinqVisitor
+import org.apache.groovy.linq.dsl.SyntaxErrorReportable
 import org.apache.groovy.linq.dsl.expression.DataSourceExpression
 import org.apache.groovy.linq.dsl.expression.FilterExpression
 import org.apache.groovy.linq.dsl.expression.FromExpression
@@ -145,7 +148,7 @@ class GinqAstWalker implements GinqVisitor<Object>, SyntaxErrorReportable {
     @CompileDynamic
     private MethodCallExpression constructFromMethodCallExpression(FromExpression fromExpression) {
         macro {
-            org.apache.groovy.linq.provider.QueryableCollection.from($v { fromExpression.dataSourceExpr })
+            org.apache.groovy.linq.provider.collection.QueryableCollection.from($v { fromExpression.dataSourceExpr })
         }
     }
 
@@ -155,7 +158,7 @@ class GinqAstWalker implements GinqVisitor<Object>, SyntaxErrorReportable {
             OnExpression onExpression, WhereExpression whereExpression) {
 
         MethodCallExpression innerJoinMethodCallExpression = macro {
-            $v{receiver}.innerJoin(org.apache.groovy.linq.provider.QueryableCollection.from($v { innerJoinExpression.dataSourceExpr }))
+            $v{receiver}.innerJoin(org.apache.groovy.linq.provider.collection.QueryableCollection.from($v { innerJoinExpression.dataSourceExpr }))
         }
 
         ((ArgumentListExpression) innerJoinMethodCallExpression.getArguments()).getExpressions().add(

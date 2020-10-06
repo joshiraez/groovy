@@ -16,12 +16,11 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package org.apache.groovy.linq.provider;
+package org.apache.groovy.linq.provider.collection;
 
 import groovy.lang.Tuple;
 import groovy.lang.Tuple2;
 import groovy.transform.Internal;
-import org.apache.groovy.linq.Queryable;
 
 import java.math.BigDecimal;
 import java.util.Comparator;

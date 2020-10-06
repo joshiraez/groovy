@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package org.apache.groovy.linq;
+package org.apache.groovy.linq.provider.collection;
 
 import groovy.lang.Tuple2;
 import groovy.transform.Internal;

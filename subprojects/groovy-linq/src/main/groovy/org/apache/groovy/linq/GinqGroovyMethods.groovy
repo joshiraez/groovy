@@ -20,8 +20,8 @@ package org.apache.groovy.linq
 
 import groovy.transform.CompileStatic
 import org.apache.groovy.linq.dsl.GinqAstBuilder
-import org.apache.groovy.linq.dsl.GinqAstWalker
 import org.apache.groovy.linq.dsl.expression.SimpleGinqExpression
+import org.apache.groovy.linq.provider.collection.GinqAstWalker
 import org.codehaus.groovy.ast.expr.ClosureExpression
 import org.codehaus.groovy.ast.expr.Expression
 import org.codehaus.groovy.ast.expr.MethodCallExpression

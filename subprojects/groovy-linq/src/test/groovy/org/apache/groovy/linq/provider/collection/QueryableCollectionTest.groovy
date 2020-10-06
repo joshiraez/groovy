@@ -16,20 +16,20 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package org.apache.groovy.linq.provider
+package org.apache.groovy.linq.provider.collection
 
 
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-import org.apache.groovy.linq.Queryable
+import org.apache.groovy.linq.provider.collection.Queryable
 import org.junit.Test
 
 import java.util.stream.Collectors
 import java.util.stream.Stream
 
-import static org.apache.groovy.linq.provider.QueryableCollection.from
+import static org.apache.groovy.linq.provider.collection.QueryableCollection.from
 
 @CompileStatic
 class QueryableCollectionTest {
