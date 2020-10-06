@@ -56,6 +56,10 @@ public class QueryableCollection<T> implements Queryable<T>, Iterable<T> {
         return from(sourceIterable);
     }
 
+    public static <T> Queryable<T> from(Queryable<T> queryable) {
+        return queryable;
+    }
+
     private QueryableCollection(Iterable<T> sourceIterable) {
         this.sourceIterable = sourceIterable;
         this.sourceStream = toStream(sourceIterable);

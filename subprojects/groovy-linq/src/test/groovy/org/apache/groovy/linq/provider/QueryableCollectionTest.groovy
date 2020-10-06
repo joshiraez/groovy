@@ -37,6 +37,7 @@ class QueryableCollectionTest {
     void testFrom() {
         assert [1, 2, 3] == from(Stream.of(1, 2, 3)).toList()
         assert [1, 2, 3] == from(Arrays.asList(1, 2, 3)).toList()
+        assert [1, 2, 3] == from(from(Arrays.asList(1, 2, 3))).toList()
     }
 
     @Test
