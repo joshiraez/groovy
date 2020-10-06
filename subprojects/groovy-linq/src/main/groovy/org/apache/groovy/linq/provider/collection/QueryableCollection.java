@@ -41,7 +41,7 @@ import java.util.stream.StreamSupport;
  * @since 4.0.0
  */
 @Internal
-public class QueryableCollection<T> implements Queryable<T>, Iterable<T> {
+class QueryableCollection<T> implements Queryable<T>, Iterable<T> {
     private final Iterable<T> sourceIterable;
     private Stream<T> sourceStream;
 

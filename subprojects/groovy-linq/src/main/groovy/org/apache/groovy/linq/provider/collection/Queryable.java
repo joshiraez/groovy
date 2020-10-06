@@ -36,7 +36,7 @@ import java.util.stream.Stream;
  * @since 4.0.0
  */
 @Internal
-public interface Queryable<T> {
+interface Queryable<T> {
     <U> Queryable<Tuple2<T, U>> innerJoin(Queryable<? extends U> queryable, BiPredicate<? super T, ? super U> joiner);
 
     <U> Queryable<Tuple2<T, U>> leftJoin(Queryable<? extends U> queryable, BiPredicate<? super T, ? super U> joiner);

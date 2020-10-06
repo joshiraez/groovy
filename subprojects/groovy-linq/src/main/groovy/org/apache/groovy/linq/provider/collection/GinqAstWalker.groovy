@@ -58,10 +58,10 @@ import static org.codehaus.groovy.ast.tools.GeneralUtils.stmt
 @CompileStatic
 class GinqAstWalker implements GinqVisitor<Object>, SyntaxErrorReportable {
 
-    private final SourceUnit sourceUnit;
+    private final SourceUnit sourceUnit
 
-    public GinqAstWalker(SourceUnit sourceUnit) {
-        this.sourceUnit = sourceUnit;
+    GinqAstWalker(SourceUnit sourceUnit) {
+        this.sourceUnit = sourceUnit
     }
 
     @Override
@@ -125,7 +125,7 @@ class GinqAstWalker implements GinqVisitor<Object>, SyntaxErrorReportable {
                             "`on` clause is expected for `innerJoin`",
                             innerJoinExpression.getLineNumber(), innerJoinExpression.getColumnNumber()
                     )
-            );
+            )
         }
 
         OnExpression onExpression = (OnExpression) filterExpressionList.get(0)
